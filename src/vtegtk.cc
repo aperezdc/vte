@@ -3612,6 +3612,46 @@ catch (...)
 }
 
 /**
+ * vte_terminal_get_selection_block_mode:
+ * @terminal: a #VteTerminal
+ *
+ * Checks whether or not block selection is enabled.
+ *
+ * Returns: %TRUE if block selection is enabled, %FALSE if not
+ */
+
+gboolean vte_terminal_get_selection_block_mode(VteTerminal *terminal) noexcept
+try
+{
+	g_return_val_if_fail(VTE_IS_TERMINAL(terminal), FALSE);
+	return IMPL(terminal)->m_selection_block_mode;
+}
+catch (...)
+{
+        vte::log_exception();
+	return FALSE;
+}
+
+/**
+ * vte_terminal_set_selection_block_mode:
+ * @terminal: a #VteTerminal
+ * @block_mode: whether block selection is enabled
+ *
+ * Sets whether or not block selection is enabled.
+ */
+void
+vte_terminal_set_selection_block_mode(VteTerminal *terminal, gboolean block_mode) noexcept
+try
+{
+	g_return_if_fail (VTE_IS_TERMINAL (terminal));
+	IMPL(terminal)->m_selection_block_mode = block_mode;
+}
+catch (...)
+{
+        vte::log_exception();
+}
+
+/**
  * vte_terminal_select_text:
  * @terminal: a #VteTerminal
  * @start_col: the starting column for the selection
