@@ -295,7 +295,7 @@ if get_option('gtk3')
     libvte_gtk3_sources += a11y_sources
   endif
 
-  libvte_gtk3 = shared_library(
+  libvte_gtk3 = library(
     vte_gtk3_api_name,
     sources: libvte_gtk3_sources,
     version: libvte_gtk3_soversion,
