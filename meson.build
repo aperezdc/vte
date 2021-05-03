@@ -428,16 +428,6 @@ foreach func: check_functions
   endif
 endforeach
 
-# Compiler
-
-# Asserts must not be disabled
-
-assert(get_option('b_ndebug') == 'false', 'assertions may not be disabled')
-
-# LTO very much NOT supported
-
-assert(get_option('b_lto') == false, 'LTO not supported')
-
 # Compiler flags
 
 compiler_flags_common = [
