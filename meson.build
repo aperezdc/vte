@@ -288,13 +288,19 @@ endforeach
 
 # Compiler
 
-# Asserts must not be disabled
+# Meson has a misfeature where it allows the user to override the -std option
+# for the C/C++ compiler. Disallow that.
 
-assert(get_option('b_ndebug') == 'false', 'assertions may not be disabled')
+assert(get_option('c_std') == 'gnu11', 'cannot override C std version')
+assert(get_option('cpp_std') == 'gnu++17', 'cannot override C++ std version')
 
-# LTO very much NOT supported
+# Meson only checks that -std supports the given string, but *not* that
+# the compiler really supports that C++ standard version. Do a simple version
+# check based on https://gcc.gnu.org/projects/cxx-status.html#cxx17
 
-assert(get_option('b_lto') == false, 'LTO not supported')
+if cxx.get_id() == 'gcc'
+  assert(cxx.version().version_compare('>= 7.0'), 'needs G++ >= 7 for C++17 support')
+endif
 
 # Compiler flags
 
