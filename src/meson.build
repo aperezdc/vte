@@ -714,4 +714,4 @@ endif
 
 # Demo application
 
-subdir('app')
+#subdir('app')
