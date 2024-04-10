@@ -483,6 +483,10 @@ compiler_flags_common = [
   '-fno-semantic-interposition',
 ]
 
+compiler_flags_common += [
+  '-Wno-cast-function-type-strict'
+]
+
 if enable_debug
   compiler_flags_common += [
     '-ggdb3',
